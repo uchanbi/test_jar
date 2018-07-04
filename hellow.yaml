@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: hellow
+  labels:
+    name: hellow
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hellow-app
+  namespace: hellows
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hellows-app
+    spec:
+      containers:
+      - name: hellows-app
+        image: bihanc/jenkinspipe
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+         httpGet:
+          path: /health/live
+          port: 8080
+          httpHeaders:
+          - name: X-Custom-Header
+            value: Awesome
+         initialDelaySeconds: 15
+         timeoutSeconds: 10
+        readinessProbe:
+         httpGet:
+          path: /health/ready
+          port: 8080
+          httpHeaders:
+          - name: X-Custom-Header
+            value: Awesome
+         initialDelaySeconds: 5
+         timeoutSeconds: 10
+         periodSeconds: 10
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellows-app
+  namespace: hellows
+  labels:
+    app: hellows-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    targetPort: 8080
+  selector:
+    app: hellows-app
+
