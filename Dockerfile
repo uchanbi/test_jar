@@ -1,7 +1,6 @@
 FROM openjdk:8
-ADD Main.jar hellow.jar
+ADD Main.jar Main.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "hellow.jar"]
-CMD [""]
+CMD ["java", "-jar", "Main.jar"]
 
 
