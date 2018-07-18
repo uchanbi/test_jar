@@ -40,7 +40,7 @@ volumes: [
     }
     stage('Run helm') {
       container('helm') {
-        sh "helm list"
+        sh "helm install ./app"
       }
     }
   }
