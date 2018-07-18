@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hellow-app
+  namespace: hellows
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hellows-app
+    spec:
+      containers:
+      - name: hellows-app
+        image: bihanc/jenkinspipe:8
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+         httpGet:
+          path: /health/live
+          port: 8080
+          httpHeaders:
+          - name: X-Custom-Header
+            value: Awesome
+         initialDelaySeconds: 15
+         timeoutSeconds: 10
+        readinessProbe:
+         httpGet:
+          path: /health/ready
+          port: 8080
+          httpHeaders:
+          - name: X-Custom-Header
+            value: Awesome
+         initialDelaySeconds: 5
+         timeoutSeconds: 10
+         periodSeconds: 10
