@@ -11,11 +11,11 @@ spec:
         app: hellows-app
     spec:
       containers:
-              - name: hellows-app: ${build_numer}
+              - name: hellows-app: ${build_number}
         image: bihanc/jenkinspipe:{{build_number}}
         ports: {{build_number}}
         - containerPort: 8080
-        livenessProbe: ${build_numer}
+        livenessProbe: ${build_number}
          httpGet:
           path: /health/live
           port: 8080
