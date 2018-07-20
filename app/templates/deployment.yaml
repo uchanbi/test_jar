@@ -11,15 +11,15 @@ spec:
         app: hellows-app
     spec:
       containers:
-              - name: hellows-app: ${build_number}
+              - name: hellows-app: $build_number
         image: bihanc/jenkinspipe:{{build_number}}
         ports: {{build_number}}
         - containerPort: 8080
-        livenessProbe: ${build_number}
-         httpGet:
+        livenessProbe: $build_number
+         httpGet: $number
           path: /health/live
           port: 8080
-          httpHeaders:
+          httpHeaders: $$build_number
           - name: X-Custom-Header
             value: Awesome
          initialDelaySeconds: 15
