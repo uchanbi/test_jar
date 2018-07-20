@@ -15,8 +15,8 @@ spec:
         image: bihanc/jenkinspipe: {{build_number}}
         ports: {{build_number}}
         - containerPort: 8080
-        livenessProbe: {{IMAGE_NUMBER}}
-         httpGet: $number
+        livenessProbe: "{{IMAGENUMBER}}"
+         httpGet: {{IMAGENUMBER}}
           path: /health/live
           port: 8080 : {{values}}
           httpHeaders: $$build_number
