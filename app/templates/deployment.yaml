@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: hellows-app
-        image: bihanc/jenkinspipe:${build_number}
+        image: bihanc/jenkinspipe:${BUILD_NUMBER}
         ports:
         - containerPort: 8080
         livenessProbe:
