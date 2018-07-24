@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
               - name: hellows-app: $build_number
-        image: bihanc/jenkinspipe: {{build_number}}
+        image: "{{ .Values.image.tag }}"
         ports: {{build_number}}
         - containerPort: 8080
         livenessProbe: "{{IMAGENUMBER}}"
