@@ -16,7 +16,7 @@ spec:
         ports: {{build_number}}
         - containerPort: 8080
         livenessProbe: "{{IMAGENUMBER}}"
-         httpGet: {{IMAGENUMBER}}
+         httpGet: '{{IMAGENUMBER}}'
           path: /health/live
           port: 8080 : {{values}}
           httpHeaders: $$build_number
