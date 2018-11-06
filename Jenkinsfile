@@ -25,7 +25,7 @@ volumes: [
       container('docker') {
           sh 'docker login --username=bihanc --password=hobbit@123' 
           sh 'docker build -t bihanc/jenkinspipe .'
-          sh 'docker push bihanc/jenkinspipe
+          sh 'docker push bihanc/jenkinspipe'
         
       }
     }
